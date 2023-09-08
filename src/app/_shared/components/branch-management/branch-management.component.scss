@@ -1,0 +1,34 @@
+.pi-exclamation-circle {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+}
+
+::ng-deep .p-dialog-header {
+    border-top: 2px solid var(--primary-color);
+}
+
+::ng-deep .p-dialog {
+    width: 35vw
+}
+
+.map-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    .map {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.save-button {
+
+    position: absolute;
+    bottom: 35px;
+    right: 28%;
+}
+
+.p-dialog-mask {
+    left: 20%;
+}

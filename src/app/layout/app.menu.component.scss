@@ -1,0 +1,54 @@
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3rem 0;
+}
+
+:host ::ng-deep {
+  .setup-icon {
+    background-image: url("../../assets/layout/images/apps.svg");
+    width: 1.25rem;
+    height: 1.25rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+  }
+
+  .addPackage-icon {
+    background-image: url("../../assets/layout/images/megaphone.svg");
+    width: 1.25rem;
+    height: 1.25rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .request-icon {
+    background-image: url("../../assets/layout/images/comment-info.svg");
+    width: 1.1rem;
+    height: 1.1rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+li.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.menu-separator {
+  padding: 1px 0;
+}
+
+.label-icon {
+  margin-top: 9px;
+  color: white;
+}
+
+.pointer {
+  cursor: pointer;
+}

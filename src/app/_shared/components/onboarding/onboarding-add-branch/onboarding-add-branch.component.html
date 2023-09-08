@@ -1,0 +1,29 @@
+<div class="container">
+
+    <div class="flex mt-0">
+
+        <div class="col-5 px-8 py-7 onboarding">
+            <div class="logo-wrapper">
+                <div class="logo-container">
+                    <img src="./assets/layout/images/petValley-logo.svg" alt="" />
+                </div>
+            </div>
+            <div class="header-container mb-5 mt-5 text-center">
+                <h5><span>You Are Almost Done!</span> Please Locate Your Branches On The Map</h5>
+            </div>
+            <div class="img-container">
+                <img src="./assets/layout/images/login-banner.svg" alt="login" width="100%" />
+            </div>
+            <div class="progress">
+                <div class="circle circle--active"></div>
+                <div class="line line--active"></div>
+                <div class="circle circle--active"></div>
+                <div class="line line--active"></div>
+                <div class="circle circle--active"></div>
+            </div>
+            <div (click)="authService.logout()" class="mt-7 logout-button">Logout</div>
+        </div>
+
+        <app-branch-management [branches]="branches" class="col-7 m-0 p-0"></app-branch-management>
+    </div>
+</div>

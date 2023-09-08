@@ -1,0 +1,115 @@
+.dayChip {
+    background-color: #dee2e6;
+    border-radius: 49px;
+    padding: 10px 22px;
+    color: black;
+    cursor: pointer;
+    margin: 3px;
+}
+
+.custom-input-style {
+    text-align: center !important;
+}
+
+.picked {
+    background-color: var(--primary-color) !important;
+    border-radius: 49px;
+    padding: 10px 22px;
+    color: white;
+    cursor: pointer;
+    margin: 3px;
+
+}
+
+.add-button {
+    width: 111px;
+    height: 48px;
+    background: var(--primary-color);
+    border-radius: 51px;
+}
+
+.required-ar {
+    text-align: right;
+}
+
+:host ::ng-deep {
+    .p-inputswitch .p-inputswitch-slider {
+        width: 67px;
+        height: 34px;
+    }
+
+    .p-inputswitch .p-inputswitch-slider:before {
+        width: 28px;
+        height: 28px;
+        margin-top: -1rem;
+    }
+
+    .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider:before {
+        transform: translateX(2.25rem);
+    }
+}
+
+
+
+button {
+    min-width: 10rem;
+    margin-right: 0.5rem;
+}
+
+@media screen and (max-width: 960px) {
+    button {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
+
+:host ::ng-deep {
+
+    .remove-button {
+        .p-button-icon.pi.pi-times {
+            font-size: 1.2rem !important;
+            font-weight: 600 !important;
+        }
+    }
+
+    .custom-chip {
+        background-color: #dee2e6;
+    }
+
+    .chosed-chip {
+        background-color: #000000 !important;
+    }
+
+    .p-toast-message-custom {
+        background-color: #e1cfe7;
+        border: solid #8a427a;
+        border-width: 0 0 0 6px;
+        color: #2c1e30;
+
+        .p-toast-icon-close {
+            color: #2c1e30;
+        }
+    }
+
+    .custom-ms .p-multiselect-label {
+        width: 450px !important;
+    }
+}
+
+
+.p-chip {
+    background-color: #8100FFe8;
+    color: #ffffff;
+    border-radius: 16px;
+    padding: 0 0.75rem;
+}
+
+.add-service {
+    color: var(--primary-color);
+    cursor: pointer;
+    margin: 20px 0;
+
+    i {
+        margin-right: 12px;
+    }
+}

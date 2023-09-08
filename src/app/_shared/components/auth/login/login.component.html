@@ -1,0 +1,86 @@
+<div class="container">
+    <p-toast></p-toast>
+
+    <div class="grid mt-0">
+        <div class="col-6 px-8 py-7 onboarding">
+            <div class="logo-wrapper">
+                <div class="logo-container">
+                    <img src="./assets/layout/images/petValley-logo.svg" alt="" />
+                </div>
+            </div>
+            <div class="img-container">
+                <img src="./assets/layout/images/login-banner.svg" alt="login" width="100%" />
+            </div>
+            <div class="progress">
+                <div class="circle circle--active"></div>
+                <div class="line"></div>
+                <div class="circle"></div>
+                <div class="line"></div>
+                <div class="circle"></div>
+            </div>
+        </div>
+        <div class="col-6 login-wrapper">
+            <div class="card-container">
+                <div *ngIf="isLoading">
+                    <p-progressSpinner></p-progressSpinner>
+                </div>
+                <div>
+                    <h1 class="header">Sign In <span class="dot">.</span></h1>
+
+                    <form [formGroup]="mainForm">
+                        <div class="p-fluid">
+                            <div class="field grid m-0">
+                                <div class="field m-0 p-1 md:col-12">
+                                    <label class="block required">Phone</label>
+                                    <div class="flex">
+                                        <p-dropdown class="mr-3" [options]="countries" formControlName="countryCode"
+                                            optionLabel="code" optionValue="value"></p-dropdown>
+                                        <div class="w-full">
+                                            <p-inputMask formControlName="phoneNumber"
+                                                mask="( 999 ) 999 - 9999"></p-inputMask>
+                                            <ng-container
+                                                *ngIf="mainForm.get('phoneNumber')?.invalid &&(mainForm.get('phoneNumber')?.touched || mainForm.get('phoneNumber')?.dirty)">
+                                                <small id="username2-help" class="p-error block">Phone is
+                                                    Required.</small>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-fluid">
+                            <div class="field grid m-0">
+                                <div class="field mt-5 p-1 md:col-12">
+                                    <p-captcha [siteKey]="recaptchaKey" (onResponse)="onRecaptchaClick($event)"
+                                        initCallback="loadCaptcha"></p-captcha>
+                                    <ng-container
+                                        *ngIf="mainForm.get('recaptcha')?.invalid && (mainForm.get('recaptcha')?.dirty || mainForm.get('recaptcha')?.touched)">
+                                        <small *ngIf="mainForm.get('recaptcha')?.errors?.['required']"
+                                            id="username2-help my-4" class="p-error block">This field is
+                                            Required.</small>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-fluid">
+                            <div class="field grid m-0">
+                                <div class="field m-0 p-1 pt-2  md:col-12">
+                                    <div class="flex gap-1">
+                                        <p-checkbox formControlName="rememberMe" value="Remember me"
+                                            inputId="ny"></p-checkbox>
+                                        <label class="checkbox" for="ny">Remember me </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="md:col-12 flex align-items-center justify-content-center">
+                            <button pButton pRipple type="submit" label="Submit" [loading]="isLoading"
+                                class="action-button mt-6" (click)="submit()"></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

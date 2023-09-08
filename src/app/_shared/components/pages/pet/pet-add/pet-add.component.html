@@ -1,0 +1,104 @@
+<p-toast></p-toast>
+
+<div class="grid">
+    <div class="col-12">
+        <div class="card p-7">
+            <div class="header-container mb-5">
+                <h5>Add Pet</h5>
+            </div>
+            <form [formGroup]="mainForm">
+
+                <div class="field col-12">
+                    <label>Choose One Or More Photos</label>
+                </div>
+                <div class="p-fluid p-formgrid grid">
+                    <div class="field col-12">
+                        <label htmlFor="state" class="required">Category</label>
+                        <p-dropdown [options]="category" optionLabel="name" optionValue="id"
+                            placeholder="Select Category" formControlName="categoryId"
+                            (onChange)="onSelectCategory($event)" defaultLabel="Select from list"></p-dropdown>
+                        <ng-container *ngIf="
+                            mainForm.get('categoryId')?.invalid &&
+                            (mainForm.get('categoryId')?.touched ||
+                                mainForm.get('categoryId')?.dirty)
+                        ">
+                            <small id="username2-help" class="p-error block">category is Required.</small>
+                        </ng-container>
+                    </div>
+                    <div class="field col-12">
+                        <label htmlFor="state" class="required">Pet Type</label>
+
+                        <p-dropdown formControlName="petType" placeholder="Select Pet Type" optionLabel="name"
+                            optionValue="id" [options]="subCategories"></p-dropdown>
+                        <ng-container *ngIf="
+                            mainForm.get('petType')?.invalid &&
+                            (mainForm.get('petType')?.touched ||
+                                mainForm.get('petType')?.dirty)
+                        ">
+                            <small id="username2-help" class="p-error block">Pet Type is Required.</small>
+                        </ng-container>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label htmlFor="firstname2 " class="required">Pet Name</label>
+                        <input pInputText placeholder="Name" formControlName="englishName" id="firstname2"
+                            type="text" />
+                        <ng-container *ngIf="
+                            mainForm.get('englishName')?.invalid &&
+                            (mainForm.get('englishName')?.touched ||
+                                mainForm.get('englishName')?.dirty)
+                        ">
+                            <small id="username2-help" class="p-error block">English Name is Required.</small>
+                        </ng-container>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label htmlFor="lastname2" class="flex justify-content-end required-ar">اسم الحيوان</label>
+                        <input pInputText formControlName="arabicName" id="lastname2" type="text" class="input-ar"
+                            placeholder="الأسم" />
+                        <ng-container *ngIf="
+                            mainForm.get('arabicName')?.invalid &&
+                            (mainForm.get('arabicName')?.touched ||
+                                mainForm.get('arabicName')?.dirty)
+                        ">
+                            <small id="username2-help" class="p-error block input-ar ">الاسم باللغه العربيه
+                                مطلوب</small>
+                        </ng-container>
+                    </div>
+                    <div class="field col-12">
+                        <label htmlFor="address" class="required">Pet Price</label>
+
+                        <p-inputNumber formControlName="price" placeholder="price" inputId="minmaxfraction"
+                            mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="5">
+                        </p-inputNumber>
+                        <ng-container *ngIf="
+                            mainForm.get('price')?.invalid &&
+                            (mainForm.get('price')?.touched ||
+                                mainForm.get('price')?.dirty)">
+                            <small id="username2-help" class="p-error block">Price is Required.</small>
+                        </ng-container>
+                    </div>
+
+                    <div class="field col-3">
+                        <label htmlFor="address" class="required">Pet Age</label>
+                        <p-inputNumber formControlName="petAge" [showButtons]="true" buttonLayout="horizontal"
+                            inputId="horizontal" spinnerMode="horizontal" [step]="1" decrementButtonClass="age-btn"
+                            incrementButtonClass="age-btn" incrementButtonIcon="pi pi-plus"
+                            decrementButtonIcon="pi pi-minus" suffix="  Month"></p-inputNumber>
+                    </div>
+                    <div class="field col-12">
+                        <label htmlFor="address">Pet Description</label>
+
+                        <textarea placeholder="Type Your Pet Description..." rows="5" cols="30" pInputTextarea
+                            [autoResize]="true" formControlName="description"></textarea>
+                    </div>
+
+                    <div class="field col-12 flex justify-content-center">
+                        <div class="col-4">
+                            <button pButton pRipple type="submit" label="Submit" class="action-button"
+                                [loading]="isLoading" (click)="submit()"></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

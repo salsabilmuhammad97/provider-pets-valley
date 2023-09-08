@@ -1,0 +1,29 @@
+<div class="map-container">
+    <div class="map" id="map">
+    </div>
+    <button *ngIf="!hideSaveBtn" (click)="onSaveClick()" pButton pRipple [loading]="isLoading" label="Save"
+        class="action-button save-button"></button>
+</div>
+<p-dialog position="top" header="Add Branch" [(visible)]="addBranchDialogShow">
+    <div class="field m-0 p-1 md:col-12">
+        <label class="block required">Name</label>
+        <input name="branch" [formControl]="branchName" type="text" pInputText>
+        <ng-container *ngIf="branchName?.invalid && (branchName?.dirty || branchName?.touched)">
+            <small *ngIf="branchName?.errors?.['required']" id="username2-help my-4" class="p-error block">Branch Name
+                is Required.</small>
+        </ng-container>
+    </div>
+    <div class="flex justify-content-end">
+        <p-button (click)="onAddBranchClick()" [disabled]="branchName.invalid" label="Add"></p-button>
+    </div>
+</p-dialog>
+
+<p-dialog position="top" header="Delete Branch" [(visible)]="removeBranchDialogShow">
+    <div class="flex align-items-center">
+        <i class="pi pi-exclamation-circle mr-3"></i>
+        <h4>Are you Sure You Want To Delete That Branch</h4>
+    </div>
+    <div class="flex justify-content-end">
+        <p-button styleClass=" p-button-outlined" (click)="onremoveBranchClick()" label="Delete"></p-button>
+    </div>
+</p-dialog>

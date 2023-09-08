@@ -1,0 +1,88 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <div class="flex mb-5">
+                <div class="header-container col-6">
+                    <h5>Product Requests</h5>
+                </div>
+                <span class="col-6">
+                    <div class="p-input-icon-right">
+                        <i class="pi pi-search"></i>
+                        <input placeholder="Search By Name" type="text" pInputText />
+                    </div>
+                </span>
+            </div>
+            <div class="table-container">
+                <p-table #dt1 [value]="products" [paginator]="true" [rowsPerPageOptions]="rowsPerPage" [rows]="pageSize"
+                    [totalRecords]="totalCount" [first]="first" [lazy]="true" pageLinkSize="totalPages" dataKey="id"
+                    [showCurrentPageReport]="true"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [loading]="loading"
+                    [rowHover]="true" responsiveLayout="scroll" (onPage)="paginate($event)">
+
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width:30%">Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Start Date</th>
+                            <th> Expiration Date</th>
+                            <th> Status</th>
+
+                            <th>
+                                <div class="flex justify-content-between align-items-center"></div>
+                            </th>
+                        </tr>
+
+                    </ng-template>
+                    <ng-template pTemplate="body" let-product>
+                        <tr>
+                            <td>
+                                {{ product.englishName }}
+                            </td>
+                            <td>
+
+                                <span class="image-text ml-2">{{product.categoryStr }}</span>
+                            </td>
+                            <td>
+                                {{ product.price }}
+                                <!-- {{ product.price | currency : "USD" }} -->
+                            </td>
+                            <td>
+                                {{ product.startDate | date : "MM/dd/yyyy" }}
+                            </td>
+
+                            <td>
+                                {{ product.expiryDate | date : "MM/dd/yyyy" }}
+                            </td>
+                            <td>
+                                <span [class]="
+                                    'customer-badge status-' +
+                                    product.isActive
+                                ">{{ product.isActive === false? 'Inactive' : 'Active' }}</span>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td class="text-center" colspan="8">No data found.</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="loadingbody">
+                        <tr>
+                            <td colspan="8">
+                                <i class="pi pi-spin pi-spinner"></i> Loading data. Please wait.
+
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="paginatorleft">
+                        <!-- <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button> -->
+                    </ng-template>
+                    <ng-template pTemplate="paginatorright">
+                        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+:host ::ng-deep {
+    .provider-badge {
+        &.status-Active {
+            .p-button {
+                background: var(--primary-color) !important;
+                border: 1px solid var(--primary-color) !important;
+            }
+        }
+
+        &.status-Pending {
+            .p-button {
+                background: #d9d9d9 !important;
+                border: 1px solid #d9d9d9 !important;
+            }
+        }
+
+        &.status-Rejected {
+            .p-button {
+                background: #ff6464 !important;
+                border: 1px solid #ff6464 !important;
+            }
+        }
+    }
+}

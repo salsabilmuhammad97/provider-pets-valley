@@ -1,0 +1,164 @@
+<div class="card">
+    <div class="flex mb-5">
+        <div class="header-container col-6">
+            <h5>Service List</h5>
+        </div>
+        <span class="col-6">
+            <div class="p-input-icon-right">
+                <i class="pi pi-search"></i>
+                <input placeholder="Search By Name" type="text" pInputText />
+            </div>
+        </span>
+    </div>
+    <div class="table-container">
+        <p-table #dt1 [value]="services" [paginator]="true" [showCurrentPageReport]="true"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="rowsPerPage" [rows]="pageSize" [totalRecords]="totalCount" pageLinkSize="totalPages"
+            dataKey="id" [lazy]="true" [loading]="loading" [rowHover]="true" responsiveLayout="scroll"
+            (onPage)="paginate($event)">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width:30%">Name</th>
+                    <th>Category</th>
+                    <th>Date From</th>
+                    <th>Date To</th>
+                    <th> Status</th>
+                    <th> Visibility</th>
+                    <th> Auto Reply</th>
+                    <th>
+                        <div class="flex justify-content-between align-items-center"></div>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-customer>
+                <tr>
+                    <td>{{ customer.englishName }}</td>
+                    <td>{{ customer.categoryStr}}</td>
+                    <td>
+                        {{ customer.dateFrom | date : "MM/dd/yyyy" }}
+                    </td>
+                    <td>
+                        {{ customer.dateTo | date : "MM/dd/yyyy" }}
+                    </td>
+                    <td>
+                        <span [class]="
+                            'customer-badge status-' +
+                            customer.statusStr
+                        ">{{ customer.statusStr }}</span>
+                    </td>
+                    <td class="text-center">
+                        <i class="pi" [ngClass]="{
+                            'true-icon pi-eye text-green-500':
+                                customer.isActive,
+                            'false-icon pi-eye-slash text-pink-500':
+                                !customer.isActive
+                        }"></i>
+                    </td>
+                    <td>
+                        {{ customer.autoReply }}
+                    </td>
+                    <td>
+                        <button pButton pRipple type="button" icon="pi pi-pencil"
+                            class="p-button-rounded p-button-secondary p-button-text" (click)="edit(customer)"></button>
+                    </td>
+
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td class="text-center" colspan="8">No Data found.</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="loadingbody">
+                <tr>
+                    <td colspan="8">Loading data. Please wait.</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="paginatorleft">
+                <!-- <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button> -->
+            </ng-template>
+            <ng-template pTemplate="paginatorright">
+                <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
+
+<!-- <div class="card">
+    <p-table
+        #dt2
+        [value]="medicalServicesList"
+        dataKey="id"
+        [rows]="10"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[5, 10, 15]"
+        [loading]="loading"
+        [paginator]="true"
+        [lazy]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [globalFilterFields]="[
+            'name',
+            'country.name',
+            'representative.name',
+            'status'
+        ]"
+        [tableStyle]="{ 'min-width': '75rem' }"
+    >
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input
+                        pInputText
+                        type="text"
+                        (input)="dt2.filterGlobal($event.target, 'contains')"
+                        placeholder="Search keyword"
+                    />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 22%">Name</th>
+                <th style="width: 22%">Country</th>
+
+            </tr>
+            <tr>
+                <th>
+                    <p-columnFilter type="text" field="englishName"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter
+                        type="text"
+                        field="categoryStr"
+                    ></p-columnFilter>
+                </th>
+
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-customer>
+            <tr>
+                <td>
+                    {{ customer.englishName }}
+                </td>
+                <td>
+
+                    <span class="ml-1 vertical-align-middle">{{
+                        customer.categoryStr
+                    }}</span>
+                </td>
+
+
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5">No customers found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div> -->

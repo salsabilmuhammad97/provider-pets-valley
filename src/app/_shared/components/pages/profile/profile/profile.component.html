@@ -1,0 +1,155 @@
+<div class="grid">
+    <p-toast></p-toast>
+    <div class="col-12">
+        <div class="card p-7">
+            <div class="field col-12 flex justify-content-end">
+                <div class="status" [ngClass]="{
+                    'status-active': providerStatusId === 1,
+                        'status-pending': providerStatusId === 3,
+                        'status-rejected': providerStatusId === 2
+                    }">
+                    {{ providerStatus }}
+                </div>
+            </div>
+
+            <div class="header-container mb-5">
+                <h5>Information</h5>
+            </div>
+
+            <form [formGroup]="mainForm">
+                <div class="p-fluid p-formgrid grid">
+                    <div class="field col-12 md:col-12">
+                        <input type="file" style="display: none" id="file"
+                            (change)="upload($event, 'logoImge','profileImgUrl')" #fileInput />
+                        <div class="logo-container upload-container" (click)="!profileImgUrl&&fileInput.click()">
+                            <img *ngIf="profileImgUrl" [src]="profileImgUrl" alt="" />
+                            <i *ngIf="!profileImgUrl" class="pi pi-plus"></i>
+                        </div>
+                        <span *ngIf="profileImgUrl" class="edit-btn" (click)="fileInput.click()">
+                            <img src='/assets/layout/images/edit-icon.png' alt="" />
+                        </span>
+
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label htmlFor="firstname2">Provider Name in English</label>
+                        <input placeholder="Name" pInputText id="firstname2" type="text" formControlName="enName" />
+                        <ng-container *ngIf="
+                                mainForm.get('enName')?.invalid &&
+                                (mainForm.get('enName')?.touched ||
+                                mainForm.get('enName')?.dirty)
+                            ">
+                            <small id="username2-help" class="p-error block">Provider Name is Required.</small>
+                        </ng-container>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label htmlFor="lastname2" class="flex justify-content-end">اسم مقدم الخدمه</label>
+                        <input pInputText id="lastname2" type="text" class="required-ar" placeholder="الأسم"
+                            formControlName="arName" />
+                        <ng-container *ngIf="
+                            mainForm.get('arName')?.invalid &&
+                            (mainForm.get('arName')?.touched ||
+                            mainForm.get('arName')?.dirty)
+                            ">
+                            <small id="username2-help" class="p-error block flex justify-content-end">الاسم باللغه
+                                العربيه مطلوب</small>
+                        </ng-container>
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <label htmlFor="firstname2">Email</label>
+                        <input pInputText id="firstname2" placeholder="exmaple@gmail.com" type="email"
+                            formControlName="email" />
+                        <ng-container *ngIf="
+                            mainForm.get('email')?.invalid &&
+                            (mainForm.get('email')?.touched ||
+                            mainForm.get('email')?.dirty)
+                            ">
+                            <small id="username2-help" class="p-error block">Email is Required.</small>
+                        </ng-container>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label htmlFor="firstname2">Phone</label>
+
+                        <p-inputMask formControlName="mobile" placeholder="(123) 456-7890"
+                            mask="(999) 999-9999"></p-inputMask>
+                        <ng-container *ngIf="
+                        mainForm.get('phone')?.invalid &&
+                        (mainForm.get('phone')?.touched ||
+                        mainForm.get('phone')?.dirty)
+                        ">
+                            <small id="username2-help" class="p-error block">Phone is Required.</small>
+                        </ng-container>
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <label htmlFor="firstname2">License Number </label>
+
+                        <input placeholder="License" formControlName="license" id="username1" type="username"
+                            aria-describedby="username1-help" pInputText />
+                        <ng-container *ngIf="
+                                mainForm.get('license')?.invalid &&
+                                (mainForm.get('license')?.touched ||
+                                    mainForm.get('license')?.dirty)
+                            ">
+                            <small id="username2-help" class="p-error block">license is Required.</small>
+                        </ng-container>
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <label htmlFor="firstname2">Commercial Record</label>
+
+                        <input placeholder="Commercial" formControlName="commercialRecord" id="username1"
+                            type="username" aria-describedby="username1-help" pInputText />
+                        <ng-container *ngIf="
+                                mainForm.get('commercialRecord')?.invalid &&
+                                (mainForm.get('commercialRecord')?.touched ||
+                                    mainForm.get('commercialRecord')?.dirty)
+                            ">
+                            <small id="username2-help" class="p-error block">Commercial Record is Required.</small>
+                        </ng-container>
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <label htmlFor="firstname2">License</label>
+                        <input type="file" style="display: none" id="file"
+                            (change)="upload($event, 'licenseImge','licenseUrl')" #fileInput2 />
+                        <div class="image-container upload-container" (click)="fileInput2.click()">
+                            <img *ngIf="licenseUrl" [src]="licenseUrl" alt="license" width="100%" height="100%">
+                            <i *ngIf="!licenseUrl" class="pi pi-plus"></i>
+                        </div>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label htmlFor="firstname2">Commercial Record</label>
+                        <input type="file" style="display: none" id="file"
+                            (change)="upload($event, 'commercialRecordImge','commercialUrl')" #fileInput3 />
+                        <div class="image-container upload-container" (click)="fileInput3.click()">
+                            <img *ngIf="commercialUrl" [src]="commercialUrl" alt="record" width="100%" height="100%">
+                            <i *ngIf="!commercialUrl" class="pi pi-plus"></i>
+                        </div>
+                    </div>
+
+                    <div class="branch-management-container">
+                        <h5>You Can Update Your Branches On The Map</h5>
+                        <app-branch-management [branches]="branches" [hideSaveBtn]="true"></app-branch-management>
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <div class="field m-0 p-1 md:col-12">
+                            <label class="block">Business</label>
+
+                            <p-dropdown [options]="businessTypes" optionLabel="name" optionValue="id"
+                                placeholder="Select From List" class="signup-dropdown" formControlName="businessType"
+                                defaultLabel="Select from list"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="field col-12 flex justify-content-center">
+                        <div class="col-4">
+                            <button pButton pRipple type="submit" label="Submit" class="action-button"
+                                [loading]="isLoading" (click)="submit()"></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+.header-container h5 {
+    color: var(--bluegray-700);
+
+    span {
+        color: var(--indigo-400) !important;
+    }
+}
+
+.logout-button {
+    cursor: pointer;
+    text-decoration: underline;
+    color: var(--primary-color);
+}
+
+.onboarding {
+    border-right: 2px solid var(--primary-color);
+    height: 100vh;
+}
+
+.container {
+    background: white;
+}

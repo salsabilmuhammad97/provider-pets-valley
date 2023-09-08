@@ -1,0 +1,102 @@
+<p-toast></p-toast>
+
+<div class="grid">
+    <div class="col-12">
+        <div class="card p-7">
+            <div class="header-container mb-5"><h5>Provider Data</h5></div>
+            <form [formGroup]="mainForm">
+                <div class="p-fluid p-formgrid grid">
+                    <div class="field col-12 md:col-2">
+                        <label htmlFor="firstname2">Provider Id </label>
+                        <input
+                            pInputText
+                            id="id"
+                            type="number"
+                            value="{{ providerInfo?.id }}"
+                            disabled
+                        />
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label htmlFor="firstname2">Full Name</label>
+                        <input
+                            pInputText
+                            id="firstname2"
+                            type="text"
+                            value="{{ providerInfo?.fullName }}"
+                            disabled
+                        />
+                    </div>
+
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="price">Email</label>
+
+                        <input
+                            pInputText
+                            id="email"
+                            type="email"
+                            value="{{ providerInfo?.email }}"
+                            disabled
+                        />
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="price">Phone Number</label>
+
+                        <input
+                            pInputText
+                            id="mobile"
+                            type="text"
+                            value="{{ providerInfo?.mobile }}"
+                            disabled
+                        />
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="price">License</label>
+
+                        <input
+                            pInputText
+                            id="license"
+                            type="text"
+                            value="{{ providerInfo?.license }}"
+                            disabled
+                        />
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="price">Commercial Record</label>
+
+                        <input
+                            pInputText
+                            id="record"
+                            type="text"
+                            value="{{ providerInfo?.commercialRecord }}"
+                            disabled
+                        />
+                    </div>
+
+                    <div class="field col-6">
+                        <label htmlFor="state">Status</label>
+                        <p-dropdown
+                            [options]="providerState"
+                            optionLabel="name"
+                            optionValue="id"
+                            formControlName="statusId"
+                        ></p-dropdown>
+                    </div>
+                    <div *ngIf="isLoading">
+                        <p-progressSpinner></p-progressSpinner>
+                      </div>
+                    <div class="field col-12">
+                        <button
+                            pButton
+                            [loading]="isLoading"
+                            pRipple
+                            type="submit"
+                            label="Submit"
+                            class="action-button"
+                            (click)="submit()"
+                        ></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

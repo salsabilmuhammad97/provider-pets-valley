@@ -1,0 +1,10 @@
+{
+    "/api": {
+    "target": "https://services.medvally.com/api/v1/",
+    "secure": false,
+    "pathRewrite": {
+        "^/api": ""
+      },
+      "changeOrigin": true
+    }
+    }

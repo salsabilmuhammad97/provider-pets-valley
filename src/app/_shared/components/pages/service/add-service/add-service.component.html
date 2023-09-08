@@ -1,0 +1,323 @@
+<div class="grid">
+    <p-toast></p-toast>
+    <div class="col-12">
+        <div class="card p-7">
+            <div class="header-container mb-5">
+                <h5>Add Service</h5>
+            </div>
+            <form [formGroup]="mainForm">
+                <div class="p-fluid p-formgrid grid">
+                    <div class="field col-12">
+                        <label htmlFor="state" class="required">Category</label>
+                        <p-dropdown placeholder="Select Catgory" [options]="category" optionLabel="name"
+                            optionValue="id" formControlName="categoryId"></p-dropdown>
+                        <ng-container *ngIf="
+                                mainForm.get('categoryId')?.invalid &&
+                                (mainForm.get('categoryId')?.touched ||
+                                    mainForm.get('categoryId')?.dirty)
+                            ">
+                            <small id="username2-help" class="p-error block">Category is Required.</small>
+                        </ng-container>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label htmlFor="firstname2" class="required">Service Name</label>
+                        <input placeholder="Name" pInputText id="firstname2" type="text"
+                            formControlName="englishName" />
+                        <ng-container *ngIf="
+                                mainForm.get('englishName')?.invalid &&
+                                (mainForm.get('englishName')?.touched ||
+                                    mainForm.get('englishName')?.dirty)
+                            ">
+                            <small *ngIf="
+                                    mainForm
+                                        .get('englishName')
+                                        ?.hasError('required')
+                                " id="username2-help" class="p-error block">English Name is Required.</small>
+                            <small *ngIf="
+                                    mainForm
+                                        .get('englishName')
+                                        ?.hasError('minlength')
+                                " id="username2-help" class="p-error block">
+                                Name must be at least 3 characters long.
+                                <!-- City can be max 8 characters long. -->
+                            </small>
+                        </ng-container>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label htmlFor="lastname2" class="flex justify-content-end required-ar">اسم الخدمه</label>
+                        <input pInputText id="lastname2" type="text" placeholder="الأسم" class="required-ar"
+                            formControlName="arabicName" />
+                        <ng-container *ngIf="
+                                mainForm.get('arabicName')?.invalid &&
+                                (mainForm.get('arabicName')?.touched ||
+                                    mainForm.get('arabicName')?.dirty)
+                            ">
+                            <small *ngIf="
+                                    mainForm
+                                        .get('arabicName')
+                                        ?.hasError('required')
+                                " id="username2-help" class="p-error block flex justify-content-end">الاسم باللغه
+                                العربيه مطلوب</small>
+                            <small *ngIf="
+                                    mainForm
+                                        .get('arabicName')
+                                        ?.hasError('minlength')
+                                " id="username2-help" class="p-error block flex justify-content-end">
+                                يجب ألا يقل الاسم عن 3 أحرف.
+                            </small>
+                        </ng-container>
+                    </div>
+
+                    <div class="field col-12">
+                        <label htmlFor="price" class="required">
+                            Service Price</label>
+
+                        <p-inputNumber placeholder="price" mode="decimal" [min]="1" inputId="withoutgrouping"
+                            [useGrouping]="false" [ariaRequired]="true" formControlName="price">
+                        </p-inputNumber>
+
+                        <ng-container *ngIf="
+                                mainForm.get('price')?.invalid &&
+                                (mainForm.get('price')?.touched ||
+                                    mainForm.get('price')?.dirty)
+                            ">
+                            <small id="username2-help" class="p-error block">Price is Required.</small>
+                        </ng-container>
+                    </div>
+
+                    <!--     <div class="field col-12 md:col-6">
+                        <label htmlFor="city">Service Days</label>
+
+                        <div class="flex flex-wrap">
+                            <div *ngFor="let day of week; let i = index" (click)="onSelect($event, day, i)">
+                                <p-chip
+                                    label="{{ day.name }}"
+                                    [removable]="true"
+                                    styleClass="custom-chip m-1"
+                                    (onRemove)="removeDay(i)"
+                                ></p-chip>
+                                <div class="dayChip" [ngClass]="{'picked': day.id }" (click)="onSelect(i)"> {{ day.name }}</div>
+                                <div class="dayChip" [style.background-color]="day === selectedDay ? '#8100FF' : ''" > {{ day.name }}</div>
+                                <div class="dayChip" [ngClass]="day === selectedDay? 'picked' : 'dayChip' " > {{ day.name }}</div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div (click)="addServiceInfo()" class="col-12 md:col-12 flex align-items-center add-service">
+                        <i class="pi pi-plus"></i>
+                        <span>Add Service Date Schedule</span>
+                    </div>
+                    <div formArrayName="serviceDays" class="field col-12 md:col-12 col justify-content-between">
+                        <div *ngFor="
+                                let info of serviceDays.controls;
+                                let i = index
+                            ">
+                            <div class="p-fluid p-formgrid grid" [formGroupName]="i">
+                                <div class="field col-12 md:col-4">
+                                    <label htmlFor="city" class="required">Service Days</label>
+                                    <p-multiSelect class="custom-ms" [options]="week" display="chip"
+                                        formControlName="dayId" defaultLabel="Select Day(s)" optionLabel="name">
+                                    </p-multiSelect>
+                                    <!-- <p-dropdown optionValue="id" [options]="week" placeholder="Select a Day"
+                                        formControlName="dayId" optionLabel="name" [showClear]="true"
+                                        id="{{ 'dayId' + i }}"></p-dropdown> -->
+                                    <ng-container
+                                        *ngIf="serviceDays.controls[i].get('dayId')?.invalid &&(serviceDays.controls[i].get('dayId')?.touched ||serviceDays.controls[i].get('dayId')?.dirty)">
+                                        <small id="username2-help" class="p-error block">Service Days is
+                                            Required.</small>
+                                    </ng-container>
+                                </div>
+
+                                <div class="field col-12 md:col-3">
+                                    <label for="timeonly" class="required">Time From</label>
+                                    <p-calendar placeholder="From" [timeOnly]="true" hourFormat="24" inputId="timeonly"
+                                        formControlName="slotStartTime" dataType="string"
+                                        id="{{ 'slotStartTime' + i }}"></p-calendar>
+                                    <ng-container *ngIf="
+                                            serviceDays.controls[i].get(
+                                                'slotStartTime'
+                                            )?.invalid &&
+                                            (serviceDays.controls[i].get(
+                                                'slotStartTime'
+                                            )?.touched ||
+                                                serviceDays.controls[i].get(
+                                                    'slotStartTime'
+                                                )?.dirty)
+                                        ">
+                                        <small id="username2-help" class="p-error block">Time from Required.</small>
+                                    </ng-container>
+                                </div>
+                                <div class="field col-12 md:col-3">
+                                    <label for="timeonly" class="required">Time To</label>
+                                    <p-calendar placeholder="To" id="{{ 'slotEndTime' + i }}" [timeOnly]="true"
+                                        hourFormat="24" inputId="timeonly" formControlName="slotEndTime"
+                                        dataType="string">
+                                    </p-calendar>
+                                    <ng-container *ngIf="
+                                            serviceDays.controls[i].get(
+                                                'slotEndTime'
+                                            )?.invalid &&
+                                            (serviceDays.controls[i].get(
+                                                'slotEndTime'
+                                            )?.touched ||
+                                                serviceDays.controls[i].get(
+                                                    'slotEndTime'
+                                                )?.dirty)
+                                        ">
+                                        <small id="username2-help" class="p-error block">Time to is Required.</small>
+                                    </ng-container>
+                                </div>
+                                <div class="field col-12 md:col-2 flex align-items-end">
+                                    <button (click)="removeDay(i)" pButton pRipple type="button" icon="pi pi-times"
+                                        class="p-button-danger p-button-text mt-5 remove-button"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="field col-12">
+                        <label htmlFor="city">Service Time </label>
+                        <div class="flex">
+                            <p-calendar
+                                [timeOnly]="true"
+                                hourFormat="12"
+                                inputId="timeonly"
+                            ></p-calendar>
+                            <div class="px-4 py-4">To</div>
+                            <p-calendar
+                                [timeOnly]="true"
+                                hourFormat="12"
+                                inputId="timeonly"
+                            ></p-calendar>
+                        </div>
+                    </div> -->
+                    <div class="field col-12">
+                        <label htmlFor="" class="required">Service Estimated Time in Minitues</label>
+                        <p-inputNumber placeholder="Mins" mode="decimal" [min]="1" [max]="2880"
+                            inputId="withoutgrouping" [useGrouping]="false" [ariaRequired]="true"
+                            formControlName="serviceEstTimeInMin">
+                        </p-inputNumber>
+                        <ng-container *ngIf="
+                                mainForm.get('serviceEstTimeInMin')?.invalid &&
+                                (mainForm.get('serviceEstTimeInMin')?.touched ||
+                                    mainForm.get('serviceEstTimeInMin')?.dirty)
+                            ">
+                            <small id="username2-help" class="p-error block">Service Estimated Time is Required.</small>
+                        </ng-container>
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <label htmlFor="zip">From</label>
+
+                        <p-calendar placeholder="From" appendTo="body" [showIcon]="true" inputId="icon"
+                            class="custom-calendar" [keepInvalid]="true" dataType="string" formControlName="dateFrom"
+                            [minDate]="today" (onSelect)="onStartDateSelect($event)"></p-calendar>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label htmlFor="zip">To</label>
+                        <p-calendar placeholder="To" appendTo="body" [showIcon]="true" inputId="icon"
+                            class="custom-calendar" formControlName="dateTo" [minDate]="expMinDate"></p-calendar>
+                    </div>
+
+                    <div class="field col-12">
+                        <label htmlFor="" [ngClass]="{ required: autoReply }">Service Discount</label>
+                        <div class="flex">
+                            <div class="col-4 pl-0 pt-0">
+                                <!-- <p-inputNumber
+                                    mode="decimal"
+                                    inputId="withoutgrouping"
+                                    [useGrouping]="false"
+                                    [ariaRequired]="true"
+                                    formControlName="discount1"
+                                >
+                                </p-inputNumber> -->
+                                <p-inputNumber placeholder="Discount 1" formControlName="discount1" prefix="%" [min]="1"
+                                    [max]="100" (onInput)="onAddDiscount($event)"></p-inputNumber>
+                                <ng-container *ngIf="
+                                        mainForm.get('discount1')?.invalid &&
+                                        (mainForm.get('discount1')?.touched ||
+                                            mainForm.get('discount1')?.dirty)
+                                    ">
+                                    <small id="username2-help" class="p-error block">Please provide at least one
+                                        discount</small>
+                                </ng-container>
+                            </div>
+
+                            <div class="col-4 pl-0 pt-0">
+                                <p-inputNumber placeholder="Discount 2" formControlName="discount2" prefix="%" [min]="1"
+                                    [max]="100" (onInput)="onAddDiscount2($event)"></p-inputNumber>
+
+                                <!-- <ng-container
+                                    *ngIf="
+                                        mainForm.get('discount2')?.invalid &&
+                                        (mainForm.get('discount2')?.touched ||
+                                            mainForm.get('discount2')?.dirty)
+                                    "
+                                >
+                                    <small
+                                        id="username2-help"
+                                        class="p-error block"
+                                        >Discount 2 is Required.</small
+                                    >
+                                </ng-container> -->
+                            </div>
+
+                            <div class="col-4 pl-0 pt-0">
+                                <p-inputNumber placeholder="Discount 3" formControlName="discount3" prefix="%" [min]="1"
+                                    [max]="100" (onInput)="onAddDiscount3($event)"></p-inputNumber>
+                                <!-- <ng-container
+                                    *ngIf="
+                                        mainForm.get('discount3')?.invalid &&
+                                        (mainForm.get('discount3')?.touched ||
+                                            mainForm.get('discount3')?.dirty)
+                                    "
+                                >
+                                    <small
+                                        id="username2-help"
+                                        class="p-error block"
+                                        >Discount 3 is Required.</small
+                                    >
+                                </ng-container> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field col-12">
+                        <label htmlFor="address">Service Description</label>
+
+                        <textarea placeholder="Type Your Service Description..." rows="5" cols="30" pInputTextarea
+                            [autoResize]="true" formControlName="description"></textarea>
+                    </div>
+
+                    <div class="field col-6">
+                        <label htmlFor="address">Visibile to Users</label>
+                    </div>
+                    <div class="field col-5 flex justify-content-end">
+                        <p-inputSwitch formControlName="isActive"></p-inputSwitch>
+                    </div>
+
+                    <div class="field col-6">
+                        <label htmlFor="address">Auto Negotiate</label>
+                    </div>
+                    <div class="field col-5 flex justify-content-end">
+                        <p-inputSwitch formControlName="autoReply"></p-inputSwitch>
+                    </div>
+                    <div class="field col-12" *ngIf="autoReply">
+                        <label htmlFor="">Auto Negotiate Max Discount</label>
+
+                        <input pInputText id="firstname2" type="text" [value]="autoReplyValue" disabled />
+                    </div>
+
+                    <div class="field col-12 flex justify-content-center">
+                        <div class="col-4">
+                            <button pButton pRipple type="submit" label="{{ actionButton }}" class="action-button"
+                                [loading]="isLoading" (click)="submit()"></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <!-- {{mainForm.valid}} -->
+        </div>
+    </div>
+</div>

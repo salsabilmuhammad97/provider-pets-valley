@@ -1,0 +1,23 @@
+<div class="card h-8">
+    <p-chart type="bar" [data]="data"></p-chart>
+</div>
+<div class="card">
+    <h4 class="mb-5">23 Reviwes</h4>
+    <div *ngFor="let rate of tests">
+        <div class="flex align-items-center justify-content-between">
+            <div class="flex gap-5">
+                <img class="customer-img" src="/assets/layout/images/petValley-logo.svg" alt="">
+                <div class="flex flex-column justify-content-center">
+                    <div class="mb-2 name">Hossam Saeed</div>
+                    <p-rating [readonly]="true" [(ngModel)]="rate.key" class="mb-2" [cancel]="false"></p-rating>
+                    <div class="mb-2">Wonderful to deal with</div>
+                    <div>Arrived on time</div>
+                </div>
+            </div>
+            <div>
+                09/13/2015
+            </div>
+        </div>
+        <p-divider></p-divider>
+    </div>
+</div>

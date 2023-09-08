@@ -1,0 +1,61 @@
+<div class="card h-screen">
+    <h5>Today</h5>
+    <form [formGroup]="mainForm">
+        <p-accordion [activeIndex]="0" (onOpen)="mainForm.reset()">
+            <p-accordionTab header="Please rate customer Hossam Saeed">
+                <div class="flex pl-6 pr-6 align-items-center">
+                    <div class="flex col-5 gap-5">
+                        <img class="customer-img" src="/assets/layout/images/petValley-logo.svg" alt="">
+                        <p-rating formControlName="rateValue" [cancel]="false" class="mt-4"></p-rating>
+                    </div>
+                    <div class="col-6 flex flex-column">
+                        <label class="mb-3" for="comment">Leave a Comment</label>
+                        <input name="comment" type="text" formControlName="comment" pInputText class="p-inputtext-lg" />
+                    </div>
+                </div>
+                <div class="field col-12 flex justify-content-center">
+                    <div class="col-4">
+                        <button [disabled]="mainForm.invalid" pButton pRipple type="submit" label="Save"
+                            class="action-button" [loading]="isLoading" (click)="submit()"></button>
+                    </div>
+                </div>
+            </p-accordionTab>
+            <p-accordionTab header="Please rate customer Hossam Saeed">
+                <div class="flex pl-6 pr-6 align-items-center">
+                    <div class="flex col-5 gap-5">
+                        <img class="customer-img" src="/assets/layout/images/petValley-logo.svg" alt="">
+                        <p-rating formControlName="rateValue" [cancel]="false" class="mt-4"></p-rating>
+                    </div>
+                    <div class="col-6 flex flex-column">
+                        <label class="mb-3" for="comment">Leave a Comment</label>
+                        <input name="comment" type="text" formControlName="comment" pInputText class="p-inputtext-lg" />
+                    </div>
+                </div>
+                <div class="field col-12 flex justify-content-center">
+                    <div class="col-4">
+                        <button [disabled]="mainForm.invalid" pButton pRipple type="submit" label="Save"
+                            class="action-button" [loading]="isLoading" (click)="submit()"></button>
+                    </div>
+                </div>
+            </p-accordionTab>
+            <p-accordionTab header="Please rate customer Hossam Saeed">
+                <div class="flex pl-6 pr-6 align-items-center">
+                    <div class="flex col-5 gap-5">
+                        <img class="customer-img" src="/assets/layout/images/petValley-logo.svg" alt="">
+                        <p-rating formControlName="rateValue" [cancel]="false" class="mt-4"></p-rating>
+                    </div>
+                    <div class="col-6 flex flex-column">
+                        <label class="mb-3" for="comment">Leave a Comment</label>
+                        <input name="comment" type="text" formControlName="comment" pInputText class="p-inputtext-lg" />
+                    </div>
+                </div>
+                <div class="field col-12 flex justify-content-center">
+                    <div class="col-4">
+                        <button [disabled]="mainForm.invalid" pButton pRipple type="submit" label="Save"
+                            class="action-button" [loading]="isLoading" (click)="submit()"></button>
+                    </div>
+                </div>
+            </p-accordionTab>
+        </p-accordion>
+    </form>
+</div>

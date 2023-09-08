@@ -1,0 +1,159 @@
+.required:after {
+    content: " *" !important;
+    color: red !important;
+}
+
+// styles: [`
+// :host ::ng-deep .pi-eye,
+// :host ::ng-deep .pi-eye-slash {
+//     transform:scale(1.6);
+//     margin-right: 1rem;
+//     color: var(--primary-color) !important;
+// }
+// `]
+// })
+
+:host ::ng-deep {
+    p-inputnumber.ng-dirty.ng-invalid .p-inputnumber-input {
+        border: 1px solid red !important;
+        // box-shadow: 0 0 5px 1px rgba(255, 0, 0, 0.2) inset !important;
+    }
+}
+
+.dot {
+    width: 64px;
+    line-height: 102.53px;
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 4.6rem;
+}
+
+////////////////////////////////
+
+.required:after {
+    content: " *" !important;
+    color: red !important;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    overflow: scroll;
+    background-color: white;
+}
+
+.grid {
+    height: 100%;
+}
+
+.img-container {
+    width: 100%;
+    text-align: center;
+
+    img {
+        width: 559px;
+        height: 559px;
+    }
+}
+
+.logo-wrapper {
+    height: 10vh;
+    display: flex;
+    margin-bottom: 1.5rem;
+}
+
+.logo-container {
+    width: 68px;
+    height: 68px;
+}
+
+.logo-text {
+    font-family: "Baloo 2";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 29px;
+    color: #3d4352;
+    padding: 1rem;
+}
+
+.login-wrapper {
+    background-color: #1f2129;
+    background-image: url("../../../../../assets/layout/images/sign-in/pexels-karolina-grabowska.png");
+    min-height: 100%;
+    background-size: cover;
+    top: 0px;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    font-family: "Baloo 2";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 58px;
+
+    color: #ffffff;
+}
+
+.text {
+    color: #dbdbdb;
+    font-family: "Baloo 2";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 38px;
+}
+
+.signup {
+    color: var(--primary-color);
+    font-family: "Baloo 2";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 38.45px;
+    cursor: pointer;
+}
+
+.card-container {
+    width: 491px;
+}
+
+:host ::ng-deep {
+    .p-input-icon-left>i:first-of-type {
+        left: 0.75rem;
+        color: var(--primary-color);
+    }
+
+    .p-inputtext {
+        color: #ffffff;
+        font-family: "Baloo 2";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 1.3rem;
+        // line-height: 38px;
+        background: #3d4352 !important;
+        // padding: 0.75rem 0.75rem;
+        border: 1px solid #ced4da00;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+            box-shadow 0.2s;
+        appearance: none;
+        border-radius: 6px;
+    }
+
+    .p-dropdown {
+        height: 53px;
+        background: #3d4352;
+        border: 1px solid #3d4352;
+    }
+
+}
+
+.onboarding {
+    border-left: 2px solid var(--primary-color);
+}

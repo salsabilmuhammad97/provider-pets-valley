@@ -1,0 +1,57 @@
+<div class="container">
+
+    <div class="grid mt-0">
+
+        <p-toast></p-toast>
+        <div class="col-6 px-8 py-7 onboarding">
+
+            <div class="logo-wrapper">
+                <div class="logo-container">
+                    <img src="./assets/layout/images/petValley-logo.svg" alt="" />
+                </div>
+            </div>
+            <div class="img-container">
+                <img src="./assets/layout/images/login-banner.svg" alt="login" width="100%" />
+            </div>
+            <div class="progress">
+                <div class="circle circle--active"></div>
+                <div class="line line--active"></div>
+                <div class="circle circle--active"></div>
+                <div class="line"></div>
+                <div class="circle"></div>
+            </div>
+        </div>
+        <div class="col-6 login-wrapper">
+
+            <div class="card-container">
+                <div routerLink="/auth/login" class="back-arrow">
+                    <i class="pi pi-arrow-circle-left pointer"></i>
+                    <p class="px-2 pointer">Back to login Page</p>
+                </div>
+
+                <div>
+                    <h1 class="header">OTP <span class="dot">.</span></h1>
+                    <p class="text mb-8">Please Enter The Code</p>
+
+                    <form>
+                        <ng-otp-input class="text-center" (onInputChange)="onOtpChange()" [formCtrl]="otpControl"
+                            [config]="{ length: 4 }"></ng-otp-input>
+                        <div class="md:col-12 flex align-items-center justify-content-center">
+                            <!-- <div *ngIf="isLoading">
+                            <p-progressSpinner></p-progressSpinner>
+                          </div> -->
+                            <button pButton pRipple [loading]="isSubmitLoading" type="submit" label="Sign In"
+                                class="action-button mt-8" (click)="submit()" [disabled]="otpControl.invalid"></button>
+                        </div>
+                        <div class="flex align-items-center justify-content-center">
+                            <button pButton pRipple [loading]="isResendCodeLoading" (click)="onResendOtpClick()"
+                                class="action-button action-button--transparent" [disabled]="timer>0" [label]="timer > 0 ?
+                                'Resend code in ' +
+                                timer + ' seconds' : 'Resend Code'"></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
